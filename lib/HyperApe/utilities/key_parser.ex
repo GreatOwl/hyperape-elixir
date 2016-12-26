@@ -1,80 +1,44 @@
 defmodule HyperApe.Utilities.KeyParser do
   @moduledoc false
 
-  alias HyperApe.Behaviours.ModelParser
-
-  def removeNil([key | rest], increment, map) do
-    
+  def flip_map(map) do
+    Enum.map(map, fn {k, v} -> {v, k} end)
   end
 
-  def removeNil([], increment, map) do
-    map
+  def map_keys(subject_map, key_mapping = [], new_map \\ %{}) do
+    new_map
   end
 
-  def jsonParse(string, keyMap) do
-    Poison.Parser.parse!(string)
-      |>parse(keyMap)
+  def map_keys(orig_map, [{old, new} | key_mapping], new_map) do
+    case Map.has_key?(orig_map, old) do
+      true ->
+        new_map
+        |> Map.put(new, orig_map[old])
+        |> fn(new_map) -> map_keys(orig_map, key_mapping, new_map) end.()
+      false ->
+        map_keys(orig_map, key_mapping, new_map)
+    end
   end
 
-  def jsonParse(string, keyMap, struct) do
-    Poison.Parser.parse!(string)
-      |>parse(keyMap, struct)
+  def parse_list_to_map(subject, key_map) do
+    map_keys(subject, flip_map(key_map))
   end
 
-  def flipStruct(struct) do
-    Map.from_struct(struct)
-    |>flipMap
+  def parse_list_to_struct(subject, key_map, struct) do
+    parse_list_to_map(subject, key_map)
+    |> cast_struct(struct)
   end
 
-  def flipMap(map) do
-#    Map.to_list(map)
-    map
-      |>Enum.map(fn {k, v} -> {v, k} end)
-      |>Enum.into(%{})
-  end
-
-  def parse(map, keyMap, struct) do
-#    keyMap = ModelParser.parse()
-    parse(map, keyMap)
-      |>castStruct(struct)
-  end
-
-  def parse(map, keyMap) do
-    Enum.to_list(map)
-    |> replaceKeys([], map, keyMap)
-  end
-
-  defp castStruct(map, struct) do
+  def cast_struct(map, struct) do
     struct(struct, map)
   end
 
-  defp replaceKeys([], increment, map, keyMap) do
-    map
+  def render(%{__struct__: _} = arg, map) do
+    Map.from_struct(arg)
+    |> render(map)
   end
 
-  defp replaceKeys([key | rest], increment, map, keyMap) do
-    keyName = getKeyName(key)
-    case Map.fetch(keyMap, keyName) do
-      {:ok, newKey} ->
-        map = replaceKey(map, newKey, keyName)
-      :error ->
-    end
-    replaceKeys(rest, increment, map, keyMap)
+  def render(arg, map) when is_map(arg) do
+    map_keys(arg, map)
   end
-
-  defp replaceKey(map, newKey, oldKey) do
-    case Map.fetch(map, oldKey) do
-      {:ok, value} ->
-        map = Map.put(map, newKey, value)
-        |> Map.delete(oldKey)
-      :error ->
-    end
-    map
-  end
-
-  defp getKeyName(key) do
-    Tuple.to_list(key)
-    |> List.first
-  end
-  
 end
