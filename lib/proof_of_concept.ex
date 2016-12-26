@@ -13,11 +13,16 @@ defmodule ProofOfConcept do
   @moduledoc "stuff"
 
   def stuff do
-    andrew = ~s({\"_name\": \"Andrew Nowak\", \"_age\": \"30\", \"_stuff\": \"my stuff\"})
-      |> Poison.Parser.parse!
-      |> HyperApe.Utilities.KeyParser.parse_list_to_struct(Person.getMap, Person)
-      |> HyperApe.Utilities.KeyParser.render(Person.getMap)
-      |> Poison.encode([])
-      |> elem(1)
+#    andrew = ~s({\"_name\": \"Andrew Nowak\", \"_age\": \"30\", \"_stuff\": \"my stuff\"})
+    data = Path.relative('sample.json')
+     |> File.read!
+
+    HyperApe.Hal.Parser.Json.Resource.parse_resource_json(data)
+#    resource = Poison.Parser.parse!(data)
+#    |> HyperApe.Utilities.KeyParser.list_to_struct(Hal.Resource.get_map(), Hal.Resource)
+
+#    |> HyperApe.Utilities.KeyParser.render(Person.getMap)
+#    |> Poison.encode([])
+#    |> elem(1)
   end
 end

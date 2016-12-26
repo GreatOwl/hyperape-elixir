@@ -1,0 +1,232 @@
+{
+  "key1": "value1",
+  "key2": "value2",
+  "_links": {
+    "link1": {"href": "http://google.com"},
+    "link2": {"href": "http://google.com"},
+    "links3": [{"href": "http://google.com"}, {"href": "http://google.com"}]
+  },
+  "_embedded": {
+    "embedded1": {
+      "key1": "value1",
+      "key2": "value2",
+      "_links": {
+        "link1": {"href": "http://google.com"},
+        "link2": {"href": "http://google.com"},
+        "links3": [{"href": "http://google.com"}, {"href": "http://google.com"}]
+      },
+      "_embedded": {
+        "embedded1": {
+          "key1": "value1",
+          "key2": "value2",
+          "_links": {
+            "link1": {
+              "href": "http://google.com"
+            },
+            "link2": {
+              "href": "http://google.com"
+            },
+            "links3": [
+              {
+                "href": "http://google.com"
+              },
+              {
+                "href": "http://google.com"
+              }
+            ]
+          }
+        },
+        "embedded2": [
+          {
+            "key1": "value1",
+            "key2": "value2",
+            "_links": {
+            "link1": {
+              "href": "http://google.com"
+            },
+            "link2": {
+              "href": "http://google.com"
+            },
+            "links3": [
+              {
+                "href": "http://google.com"
+              },
+              {
+                "href": "http://google.com"
+              }
+            ]
+          }
+          },
+          {
+            "key1": "value1",
+            "key2": "value2",
+            "_links": {
+              "link1": {
+                "href": "http://google.com"
+              },
+              "link2": {
+                "href": "http://google.com"
+              },
+              "links3": [
+                {
+                  "href": "http://google.com"
+                },
+                {
+                  "href": "http://google.com"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "embedded2": [
+      {
+        "key1": "value1",
+        "key2": "value2",
+        "_links": {
+          "link1": {"href": "http://google.com"},
+          "link2": {"href": "http://google.com"},
+          "links3": [{"href": "http://google.com"}, {"href": "http://google.com"}]
+        },
+        "_embedded": {
+          "embedded1": {
+            "key1": "value1",
+            "key2": "value2",
+            "_links": {
+              "link1": {
+                "href": "http://google.com"
+              },
+              "link2": {
+                "href": "http://google.com"
+              },
+              "links3": [
+                {
+                  "href": "http://google.com"
+                },
+                {
+                  "href": "http://google.com"
+                }
+              ]
+            }
+          },
+          "embedded2": [
+            {
+              "key1": "value1",
+              "key2": "value2",
+              "_links": {
+                "link1": {
+                  "href": "http://google.com"
+                },
+                "link2": {
+                  "href": "http://google.com"
+                },
+                "links3": [
+                  {
+                    "href": "http://google.com"
+                  },
+                  {
+                    "href": "http://google.com"
+                  }
+                ]
+              }
+            },
+            {
+              "key1": "value1",
+              "key2": "value2",
+              "_links": {
+                "link1": {
+                  "href": "http://google.com"
+                },
+                "link2": {
+                  "href": "http://google.com"
+                },
+                "links3": [
+                  {
+                    "href": "http://google.com"
+                  },
+                  {
+                    "href": "http://google.com"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key1": "value1",
+        "key2": "value2",
+        "_links": {
+          "link1": {"href": "http://google.com"},
+          "link2": {"href": "http://google.com"},
+          "links3": [{"href": "http://google.com"}, {"href": "http://google.com"}]
+        },
+        "_embedded": {
+          "embedded1": {
+            "key1": "value1",
+            "key2": "value2",
+            "_links": {
+              "link1": {
+                "href": "http://google.com"
+              },
+              "link2": {
+                "href": "http://google.com"
+              },
+              "links3": [
+                {
+                  "href": "http://google.com"
+                },
+                {
+                  "href": "http://google.com"
+                }
+              ]
+            }
+          },
+          "embedded2": [
+            {
+              "key1": "value1",
+              "key2": "value2",
+              "_links": {
+                "link1": {
+                  "href": "http://google.com"
+                },
+                "link2": {
+                  "href": "http://google.com"
+                },
+                "links3": [
+                  {
+                    "href": "http://google.com"
+                  },
+                  {
+                    "href": "http://google.com"
+                  }
+                ]
+              }
+            },
+            {
+              "key1": "value1",
+              "key2": "value2",
+              "_links": {
+                "link1": {
+                  "href": "http://google.com"
+                },
+                "link2": {
+                  "href": "http://google.com"
+                },
+                "links3": [
+                  {
+                    "href": "http://google.com"
+                  },
+                  {
+                    "href": "http://google.com"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

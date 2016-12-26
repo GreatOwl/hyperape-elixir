@@ -5,6 +5,14 @@ defmodule HyperApe.Utilities.KeyParser do
     Enum.map(map, fn {k, v} -> {v, k} end)
   end
 
+  def keys(map = [], list = []) do
+    list
+  end
+
+  def keys([{key, value} | map], list \\ []) do
+    [key | keys(map, list)]
+  end
+
   def map_keys(subject_map, key_mapping = [], new_map \\ %{}) do
     new_map
   end
@@ -20,12 +28,12 @@ defmodule HyperApe.Utilities.KeyParser do
     end
   end
 
-  def parse_list_to_map(subject, key_map) do
+  def list_to_map(subject, key_map) do
     map_keys(subject, flip_map(key_map))
   end
 
-  def parse_list_to_struct(subject, key_map, struct) do
-    parse_list_to_map(subject, key_map)
+  def list_to_struct(subject, key_map, struct) do
+    list_to_map(subject, key_map)
     |> cast_struct(struct)
   end
 
